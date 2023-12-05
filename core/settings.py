@@ -40,6 +40,9 @@ INSTALLED_APPS = [
 
     # my apps
     'api',
+
+    # third party
+    'rest_framework',
 ]
 
 
