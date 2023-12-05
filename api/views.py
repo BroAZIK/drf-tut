@@ -1,15 +1,18 @@
-from rest_framework.decorators import api_view
+# from rest_framework.decorators import api_view
+from rest_framework.views import APIView
 from rest_framework.request import Request
 from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 
-@api_view(['GET', 'POST'])
-def home(request: Request) -> Response:
-    if request.method == 'GET':
-        print(request.query_params)
+class HomeView(APIView):
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
-        return Response({"name": request.query_params['name']})
+    def get(self, request: Request) -> Response:
+        return Response(data={"name": request.query_params['name']}, status=status.HTTP_200_OK)
 
-    elif request.method =='POST':
-        return Response({"name": request.data['name']})
-
+    def post(self, request: Request) -> Response:
+        return Response(data={"name": request.data['name']}, status=status.HTTP_201_CREATED)
