@@ -40,16 +40,7 @@ INSTALLED_APPS = [
 
     # my apps
     'api',
-
-    # third party
-    'rest_framework',
 ]
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
-    ]
-}
 
 
 MIDDLEWARE = [
